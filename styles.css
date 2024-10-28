@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.falling-letters {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.letter-y, .letter-i {
+    position: absolute;
+    opacity: 0;
+    transform-origin: bottom center;
+    transform: translateY(-100vh);
+    bottom: 120px;  /* 修改这里，设置底部间距为10px */
+}
+
+.letter-y {
+    width: 205px;
+    height: 218px;
+    left: 30%;
+    animation: fallDown 2s ease-in forwards, bounce 0.5s ease-out 2s forwards;
+    /* 添加过渡效果到初始状态 */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.letter-i {
+    width: 53px;
+    height: 208px;
+    left: 60%;
+    animation: fallDown 2s ease-in forwards 0.5s, bounce 0.5s ease-out 2.5s forwards;
+    /* 添加过渡效果到初始状态 */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fallDown {
+    0% {
+        opacity: 1;
+        transform: translateY(-100vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);  /* 因为已经设置了bottom: 10px���所以这里保持为0 */
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-50px);
+    }
+    40% {
+        transform: translateY(0);
+    }
+    60% {
+        transform: translateY(-20px);
+    }
+    80% {
+        transform: translateY(0);
+    }
+    90% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* 添加固定在左上角的样式 */
+.fixed-top {
+    position: fixed !important;
+    top: 20px !important;
+    left: 20px !important;
+    bottom: auto !important;
+    transform: none !important;
+    /* 添加所有属性的过渡效果，包括宽度和高度 */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* 或者单独指定每个属性的过渡 */
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 调整固定后两个字母的位置和大小 */
+.letter-y.fixed-top {
+    width: 102px;  /* 原尺寸的一半 */
+    height: 109px;  /* 原尺寸的一半 */
+}
+
+.letter-i.fixed-top {
+    width: 26px;  /* 原尺寸的一半 */
+    height: 104px;  /* 原尺寸的一半 */
+    left: 130px !important;
+}
